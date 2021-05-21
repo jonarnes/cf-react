@@ -1,22 +1,62 @@
-import logo from './logo.svg';
 import './App.css';
+//https://www.contentful.com/developers/docs/javascript/tutorials/getting-started-with-react-and-contentful/
+
+import {useState, useEffect} from "react";
+import { ImageEngineProvider, Image } from "@imageengine/react"
 
 function App() {
+  const query = `
+  {
+    pageCollection {
+      items {
+        title
+        logo {
+          url
+        }
+      }
+    }
+  }
+  `
+
+  // define the initial state
+  const [page, setPage] = useState(null);
+
+  useEffect(() => {
+    window
+      .fetch(`https://graphql.contentful.com/content/v1/spaces/1j6watd6ddbk/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authenticate the request
+          Authorization: "Bearer qSBFvCtGtxyBY5wAsdFgfooXL78rgiBqp5dxrFzvi8Q",
+        },
+        // send the GraphQL query
+        body: JSON.stringify({ query }),
+      })
+      .then((response) => response.json())
+      .then(({ data, errors }) => {
+        if (errors) {
+          console.error(errors);
+        }
+
+        // rerender the entire component with new data
+        setPage(data.pageCollection.items[0]);
+      });
+  }, []);
+
+  if (!page) {
+    return "Loading...";
+  }
+
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <ImageEngineProvider deliveryAddress="https://z5s452n5.cdn.imgeng.in">
+        <Image src={page.logo.url.replace("https://images.ctfassets.net","")} className="App-logo" alt="logo"></Image>
+      </ImageEngineProvider>
+      <p>{page.title}</p>
       </header>
     </div>
   );
