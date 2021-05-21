@@ -1,27 +1,28 @@
 import './App.css';
 //https://www.contentful.com/developers/docs/javascript/tutorials/getting-started-with-react-and-contentful/
 
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { ImageEngineProvider, Image } from "@imageengine/react"
 
 function App() {
-  const query = `
-  {
-    pageCollection {
-      items {
-        title
-        logo {
-          url
-        }
-      }
-    }
-  }
-  `
 
   // define the initial state
   const [page, setPage] = useState(null);
 
   useEffect(() => {
+    const query = `
+    {
+      pageCollection {
+        items {
+          title
+          logo {
+            url
+          }
+        }
+      }
+    }
+    `
+
     window
       .fetch(`https://graphql.contentful.com/content/v1/spaces/1j6watd6ddbk/`, {
         method: "POST",
