@@ -48,8 +48,6 @@ function App() {
     return "Loading...";
   }
 
-
-
   return (
     <div className="App">
       <header className="App-header">
