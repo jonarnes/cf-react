@@ -22,14 +22,13 @@ function App() {
       }
     }
     `
-
     window
       .fetch(`https://graphql.contentful.com/content/v1/spaces/1j6watd6ddbk/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           // Authenticate the request
-          Authorization: "Bearer qSBFvCtGtxyBY5wAsdFgfooXL78rgiBqp5dxrFzvi8Q",
+          Authorization: "Bearer {process.env.REACT_APP_KEY}",
         },
         // send the GraphQL query
         body: JSON.stringify({ query }),
