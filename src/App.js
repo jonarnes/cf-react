@@ -29,6 +29,7 @@ function App() {
           "Content-Type": "application/json",
           // Authenticate the request
           "Authorization": "Bearer " + process.env.REACT_APP_KEY,
+          //"Authorization": "Bearer qSBFvCtGtxyBY5wAsdFgfooXL78rgiBqp5dxrFzvi8Q",
         },
         // send the GraphQL query
         body: JSON.stringify({ query }),
@@ -51,8 +52,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <ImageEngineProvider deliveryAddress="https://z5s452n5.cdn.imgeng.in">
-        <Image src={page.logo.url.replace("https://images.ctfassets.net","")} className="App-logo" alt="logo"></Image>
+      <ImageEngineProvider deliveryAddress="https://z5s452n5.cdn.imgeng.in" stripFromSrc="https://images.ctfassets.net">
+        <Image src={page.logo.url} className="App-logo" alt="logo"></Image>
       </ImageEngineProvider>
       <p>{page.title}</p>
       </header>
