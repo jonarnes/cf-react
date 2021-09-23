@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <ImageEngineProvider deliveryAddress="https://z5s452n5.cdn.imgeng.in" stripFromSrc="https://images.ctfassets.net">
+      <ImageEngineProvider deliveryAddress="https://9jtscd9q.cdn.imgeng.in" stripFromSrc="https://images.ctfassets.net">
         <Image src={page.logo.url} className="App-logo" alt="logo"></Image>
       </ImageEngineProvider>
       <p>{page.title}</p>
