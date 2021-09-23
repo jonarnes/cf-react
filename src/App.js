@@ -1,5 +1,5 @@
 import './App.css';
-//https://www.contentful.com/developers/docs/javascript/tutorials/getting-started-with-react-and-contentful/
+  //https://www.contentful.com/developers/docs/javascript/tutorials/getting-started-with-react-and-contentful/
 
 import { useState, useEffect } from "react";
 import { ImageEngineProvider, Image } from "@imageengine/react"
@@ -29,7 +29,7 @@ function App() {
           "Content-Type": "application/json",
           // Authenticate the request
           "Authorization": "Bearer " + process.env.REACT_APP_KEY,
-          //"Authorization": "Bearer qSBFvCtGtxyBY5wAsdFgfooXL78rgiBqp5dxrFzvi8Q",
+
         },
         // send the GraphQL query
         body: JSON.stringify({ query }),
